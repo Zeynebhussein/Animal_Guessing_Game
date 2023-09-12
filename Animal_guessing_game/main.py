@@ -1,7 +1,7 @@
 import turtle
-
 import pandas as pd
 
+#setting up the screen
 screen = turtle.Screen()
 screen.setup(width=655, height=712)
 screen.title("Animal Guessing Game")
@@ -9,9 +9,11 @@ image = "animals.gif"
 screen.addshape(image)
 turtle.shape(image)
 
+#reading the csv file that contains the animals name and x,y coordinate
 data = pd.read_csv("animals_name.csv")
 animal_name = data.name.to_list()
 
+#the game
 guessed_animals = []
 while len(guessed_animals) < 46:
     answer_animal = screen.textinput(title=f"{len(guessed_animals)}/46 Correct Answer",
@@ -27,4 +29,3 @@ while len(guessed_animals) < 46:
         t.goto(int(animal_data.x), int(animal_data.y))
         t.pencolor("grey")
         t.write(answer_animal, font=("Arial", 14, "normal"))
-
